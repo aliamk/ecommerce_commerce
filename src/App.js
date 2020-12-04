@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { commerce } from './lib/commerce'
 import { NavBar, Products } from './components'
 
-
 const App = () => {
 
     const [products, setProducts] = useState([])
     const [cart, setCart] = useState({})
 
+    // Connect to Commerse.js' api to see products list in our database
     const fetchProducts = async() => {
         // const response = await commerce.products.list()
         const { data } = await commerce.products.list()
-
         setProducts(data)
     }
     
