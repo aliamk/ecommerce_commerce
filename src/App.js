@@ -1,9 +1,11 @@
 import React from 'react'
-import Products from './components/Products/Products'
+import { NavBar, Products } from './components'
+
 
 const App = () => {
     return (
         <div>
+            <NavBar />
             <Products />
         </div>
     )
