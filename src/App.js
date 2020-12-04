@@ -14,12 +14,19 @@ const App = () => {
 
         setProducts(data)
     }
-
+    
+    // Connect to the Commerce.js' api to check whats in the cart 
     const fetchCart = async () => {
         // const response = await commerce.cart.retrieve()
         // const cart = await commerce.cart.retrieve()
         // setCart(cart)
         setCart(await commerce.cart.retrieve())
+    }
+
+    // Add items to the cart (send as prop to product.js component)
+    const handleAddToCart = async (productId, quantity) => {
+        const item = await commerce.cart.add(productId, quantity)
+        setCart(item.cart)
     }
 
     useEffect(() => {
@@ -33,7 +40,7 @@ const App = () => {
     return (
         <div>
             <NavBar />
-            <Products products={products}/>
+            <Products products={products} onAddToCart={handleAddToCart}/>
         </div>
     )
 }
