@@ -39,7 +39,7 @@ const AddressForm = () => {
                         <FormInput required name='city' label='City' />
                         <FormInput required name='zipPostalCode' label='Zip/Postal Code' />
 
-                        <Grid item xs={12} sm={6}>
+                        {/* <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Country</InputLabel>
                             <Select value={ } fullWidth onChange={ }>
                                 <MenuItem key={ } value={ }>Select Me</MenuItem>
@@ -58,7 +58,7 @@ const AddressForm = () => {
                             <Select value={ } fullWidth onChange={ }>
                                 <MenuItem key={ } value={ }>Select Me</MenuItem>
                             </Select>
-                        </Grid>
+                        </Grid> */}
 
                     </Grid>
                 </form>
