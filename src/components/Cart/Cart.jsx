@@ -2,6 +2,9 @@ import React from 'react'
 import { Container, Typography, Button, Grid } from '@material-ui/core'
 
 import useStyles from './cart.styles'
+import CartItem from './CartItem/CartItem'
+
+// THE CART PAGE: IF THERE ARE NO ITEMS IN THE CART, SHOW THE 'EMPTYCART' MESSAGE. IF THERE ARE ITEMS, THEN SHOW THE FILLEDCART COMPONENT INSTEAD OF THE PRODUCTS COMPONENT
 
 const Cart = ({ cart }) => {
 
@@ -16,8 +19,8 @@ const Cart = ({ cart }) => {
             <Grid container spacing={3}>
                 {cart.line_items.map((item) => (
                     <Grid item xs={12} sm={4} key={item.id}>
-                        {/* <CartItem /> */}
-                        <div>{item.name}</div>
+                        <CartItem item={item} />
+                        {/* <div>{item.name}</div> */}
                     </Grid>
                 ))}
             </Grid>
@@ -36,7 +39,7 @@ const Cart = ({ cart }) => {
     return (
         <Container>
             <div className={classes.toolbar} /> {/* This just adds space between the navbar and items below it */}
-            <Typography className={classes.title} variant="h3">Your Shopping Cart</Typography>
+            <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
             { !cart.line_items.length ? <EmptyCart /> : <FilledCart />}
         </Container>
     )
