@@ -7,6 +7,7 @@ import logo from '../../assets/store.png'
 // import MoreIcon from '@material-ui/icons/MoreVert';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Link } from 'react-router-dom'
 
 import useStyles from './navbar.styles'
 
@@ -19,13 +20,13 @@ const NavBar = ({ totalItems }) => {
         <>
             <AppBar position="fixed" className={classes.appBar} color="inherit" >
                 <Toolbar>
-                    <Typography variatn="h6" className={classes.title} color="inherit">
+                    <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
                         <img src={logo} alt="Commerce.js" height="25px" className={classes.image} />
                         Commerce.js
                     </Typography>
                     <div className={classes.grow} />
                     <div className={classes.button}>
-                        <IconButton aria-label="Show Cart Items" color="inherit">
+                        <IconButton component={Link} to="/cart" aria-label="Show Cart Items" color="inherit">
                             <Badge badgeContent={totalItems} color="secondary">
                                 <ShoppingCartIcon />
                             </Badge>
