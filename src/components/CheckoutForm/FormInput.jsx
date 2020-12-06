@@ -2,9 +2,9 @@ import React from 'react'
 import { TextField, Grid } from '@material-ui/core'
 import { useFormContext, Controller } from 'react-hook-form'
 
-// A 'model' to base the AddressForm and PaymentForm on and means we don't need to worry about state in those components
+// A 'model' custome prop to base the AddressForm and PaymentForm on and means we don't need to worry about state in those components
 
-const FormInput = ({ name, label, required }) => {
+const FormInput = ({ name, label }) => {
 
     const { control } = useFormContext()
 
@@ -16,7 +16,7 @@ const FormInput = ({ name, label, required }) => {
                 fullWidth
                 name={name}
                 label={label}
-                required={required}
+                required
             />
         </Grid>
     )

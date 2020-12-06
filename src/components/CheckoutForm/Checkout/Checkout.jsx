@@ -12,6 +12,7 @@ const Checkout = ({ cart }) => {
     const classes = useStyles()
     const [activeStep, setActiveStep] = useState(0)
     const [checkoutToken, setCheckoutToken] = useState(null)
+    const [shippingData, setShippingData] = useState({})
 
     useEffect(() => {
         const generateToken = async () => {
@@ -26,12 +27,20 @@ const Checkout = ({ cart }) => {
         generateToken()
     }, [cart])
 
+    const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
+    const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
+
+    const next = (data) => {
+        setShippingData(data)
+        nextStep()
+    }
+
     const Confirmation = () => (
         <div>Confirmation</div>
     )
 
     // If state activeStep is 0, display the AddressForm; if it's any other number, display the paymentForm
-    const Form = () => activeStep === 0 ? <AddressForm checkoutToken={checkoutToken} /> : <PaymentForm />
+    const Form = () => activeStep === 0 ? <AddressForm checkoutToken={checkoutToken} next={next} /> : <PaymentForm shippingData={shippingData} />
 
     return (
         <>
