@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Toolbar, IconButton, InputBase, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Badge, Typography } from '@material-ui/core';
 import logo from '../../assets/store.png'
 // import MenuIcon from '@material-ui/icons/Menu';
 // import SearchIcon from '@material-ui/icons/Search';

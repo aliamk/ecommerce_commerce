@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, List, ListItem, ListItemText } from '@material-ui/core';
 
-// This component will display when user clicks next after filling out he address form
+// This component will display when user clicks next after filling out the address form
 // Loop through the checkoutToken object and display a list item for each product
 
 const Review = ({ checkoutToken }) => (

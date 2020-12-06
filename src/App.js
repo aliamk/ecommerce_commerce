@@ -4,7 +4,7 @@ import { NavBar, Products, Cart, Checkout } from './components'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const App = () => {
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    // const [mobileOpen, setMobileOpen] = React.useState(false);
     const [products, setProducts] = useState([])
     const [cart, setCart] = useState({})
     const [order, setOrder] = useState({});
