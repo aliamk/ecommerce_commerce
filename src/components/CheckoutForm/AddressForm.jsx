@@ -50,15 +50,15 @@ const AddressForm = ({ checkoutToken, next }) => {
     }
 
     // ==== USEEFFECT HOOKS ==== //
-    // Call the fetchShipping countries from Commerce.js and pass in the token
+    // Call the fetchShipping function for COUNTRIES from Commerce.js and pass in the token on app load
     useEffect(() => {
         fetchShippingCountries(checkoutToken.id)
     }, [])
-    // If shippingCountry is present, call the fetchSubdivision fetch function
+    // If shippingCountry is present/changes, call the fetchSubdivision function for SUBDIVISIONS from Commerce.js
     useEffect(() => {
         if (shippingCountry) fetchSubdivisions(shippingCountry)
     }, [shippingCountry])
-    // If shippingDivision is selected, call fetchShippingOptions and pass it the token, country and subdivision
+    // If shippingSubdivision is selected/changes, call the fetchShippingOptions function for OPTIONS and pass it the token, country and subdivision
     useEffect(() => {
         if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision)
     }, [shippingSubdivision])

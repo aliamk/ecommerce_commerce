@@ -6,14 +6,16 @@ import useStyles from './checkout.styles'
 import AddressForm from '../AddressForm'
 import PaymentForm from '../PaymentForm'
 
+// For the Stepper, initialise it to show two scenarios: shipping address section or the payment details section
 const steps = ['Shipping address', 'Payment details']
 
-const Checkout = ({ cart }) => {
+const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     const classes = useStyles()
-    const [activeStep, setActiveStep] = useState(0)
-    const [checkoutToken, setCheckoutToken] = useState(null)
-    const [shippingData, setShippingData] = useState({})
+    const [activeStep, setActiveStep] = useState(0)                 // For the stepper
+    const [checkoutToken, setCheckoutToken] = useState(null)       // Received from Commerce.js
+    const [shippingData, setShippingData] = useState({})           // data from AddressForm initially empty object
 
+    // Get tokens from commerce.js and set its state
     useEffect(() => {
         const generateToken = async () => {
             try {
@@ -27,9 +29,12 @@ const Checkout = ({ cart }) => {
         generateToken()
     }, [cart])
 
+    // When the next function is called (button in AddressForm), update the stepper
     const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
+    // When the back function is called (button in AddressForm), update the stepper
     const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
 
+    // Next Button in AddressForm.jsx: data from the form is set in state by this function and the stepper is updated
     const next = (data) => {
         setShippingData(data)
         nextStep()
@@ -39,8 +44,11 @@ const Checkout = ({ cart }) => {
         <div>Confirmation</div>
     )
 
-    // If state activeStep is 0, display the AddressForm; if it's any other number, display the paymentForm
-    const Form = () => activeStep === 0 ? <AddressForm checkoutToken={checkoutToken} next={next} /> : <PaymentForm shippingData={shippingData} />
+    // If activeStep's state is 0, display the AddressForm; if it's any other number, display the paymentForm
+    // Pass checkoutToken and Next and ShippingData as props to the AddressForm and PaymentForm
+    const Form = () => activeStep === 0
+        ? <AddressForm checkoutToken={checkoutToken} next={next} />
+        : <PaymentForm checkoutToken={checkoutToken} shippingData={shippingData} nextStep={nextStep} backStep={backStep} onCaptureCheckout={onCaptureCheckout} />
 
     return (
         <>
